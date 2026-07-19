@@ -1,0 +1,162 @@
+
+
+@font-face {
+  font-family: 'Garet';
+  /* ../ steps out of the css folder, then enters fonts */
+  src: url('../fonts/Garet-Book.ttf') format('truetype'); 
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.wrapper{
+  display: grid;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+ul {
+  list-style: none;
+}
+/* Style for the body */
+body {
+  background-image: linear-gradient(to left,#000257,#000130);
+  font-family: "Garet", sans-serif;
+  font-weight: 400;
+  min-height: 5000px;
+  color:white;
+  padding-top: 60px;
+}
+
+/* Style for the header */
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
+.header_content{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+    margin-top: 10px;
+}
+.logo {
+  display: inline-flex;
+  align-items: center;
+}
+.logo_img,
+.logo_image {
+  display: block;
+  width: 200px;
+  height: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+  margin-right:170px;
+}
+
+.nav_list{
+display: flex;
+column-gap: 45px;
+}
+
+.nav_link {
+  color: rgba(255,255,255 0.75);
+  font-size: 17px;
+  transition: all .4s;
+  position: relative;
+  font-family: "Garet",sans-serif !important;
+  font-weight:700;
+}
+.nav_link:hover, .nav_link:focus{
+    color: rgb(162, 186, 212)
+    
+}
+.nav_link::after {
+    content: '';
+    height: 2px;
+    width: 100%;
+    background-color: rgb(245, 245, 245);
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    transition: all 0.2s;
+    opacity: 0;
+    pointer-events: none;
+}
+.nav_link:hover::after{
+opacity: 1;    
+}
+
+/* media queries*/
+@media (max-width: 650px){
+    .header_content{
+        flex-direction : column;
+        padding: 25px 0;
+        row-gap: 18px;
+    }
+    .nav_list{
+        column-gap: 20px;
+    }
+}
+.heading h1{
+    text-align: left;
+    justify-content: center;
+    margin-left: 600px;
+    margin-bottom: 450px;
+    font-size: 85px;
+    font-family: "Inter", sans-serif;
+    line-height: 1.5em;
+    font-weight: 400;
+
+}
+
+/*Grid----------------------------------------------------------------------------*/
+.grid-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: .2em;
+  justify-items: center;
+  align-items: center;
+}
+.item{
+  padding: 2em;
+  background-image: transparent;
+  color:rgb(255, 255, 255);
+  text-align: center;
+  border-radius: 8px;
+  font-size: 5rem;
+}
+.item-glow{
+  padding: 2em;
+  background-image: transparent;
+  color:rgb(255, 255, 255);
+  text-align: center;
+  border-radius: 16px;
+  font-size: 5rem;
+  position: relative;
+  display: inline-block;
+  transition: background 0.4s ease, filter 0.4s ease;
+
+}
+.item-glow img {
+  display: block;
+
+}
+.item-glow:hover{
+  transition: filter 0.2s ease;
+
+  filter: drop-shadow(0 0 15px rgba(112, 0, 255, 0.6))
+          drop-shadow(0 0 30px rgba(0, 212, 255, 0.4));
+}

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}" />
+    <title>Cathedral Development</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+    </style>
+  </head>
+  <body>
+    <section class="navigation">
+      <header class="header">
+        <div class="header_content">
+          <a href="{{ url_for('home') }}" class="logo">
+            <img class="logo_img" src="{{ url_for('static', filename='images/nav_logo.svg') }}" alt="Company Logo" style="margin-bottom: 10px;" />
+          </a>
+          <nav class="nav">
+            <ul class="nav_list">
+              <li class="nav_item">
+                <a href="{{ url_for('home') }}" target="_blank" class="nav_link">home</a>
+              </li>
+              <li class="nav_item">
+                <a href="{{ url_for('cdevportal') }}" target="_blank" class="nav_link">developers</a>
+              </li>
+               <li class="nav_item">
+                <a href="{{ url_for('texsefportal') }}" target="_blank" class="nav_link">TexSEF</a>
+              </li>
+              <li class="nav_item">
+                <a href="#" target="_blank" class="nav_link">find your organization</a>
+              </li>
+            </ul>
+          </nav>
+          
+        </div>
+      </header>
+      <div class="grid-container">
+        <div class="item"><strong>Free Web Infrastructure - <br> Fast, Reliable,</strong><br><em>Built to Scale.</em></div>
+        <div class="item">
+          <div class="item-glow">
+          <img src="{{ url_for('static', filename='images/cpy.png') }}" style="width: 120%; height: auto; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); border-radius: 48px;">
+          </div>
+        </div>
+        <div class="item"style="font-size: 10px; margin-bottom: 9rem;margin-right:-50vw; color: gray;">accepting orders through 07/23</div>
+       
+          
+      </div>
+      
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+  </body>
+</html>
