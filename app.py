@@ -15,6 +15,10 @@ def cdevportal():
 def texsefportal():
     return render_template("texsef.html")
 
+@app.route("/texdash")
+def texdash():
+    return render_template("dash-tx.html")
+
 
 
 if __name__ == "__main__":
