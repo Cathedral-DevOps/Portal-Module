@@ -69,6 +69,31 @@
 
                 </li>
 
+                   <li class="sidebar-item">
+                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#import-dropdown" aria-expanded="false" aria-controls="import">
+                        <i class="bx bx-arrow-to-top"></i>
+                        <span>Post</span>
+                    </a>
+                    <ul id="import-dropdown" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link">
+                                Event Post
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link">
+                                VOD Post
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link">
+                                News Post
+                            </a>
+                        </li>
+                    </ul>
+
+                </li>
+
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link">
                         <i class="bx bx-group"></i>
@@ -89,10 +114,12 @@
                 </li>
             </ul>
             <div class="sidebar-footer">
-                <a href="#" class="sidebar-link">
+                <form action="/texsef" id="logout-form" method="GET">
+                <a href="#" class="sidebar-link" id="logout-btn">
                     <i class="bx bx-log-out"></i>
                     <span>Logout</span>
                 </a>
+                </form>
             </div>
         </aside>
         <div class="main">

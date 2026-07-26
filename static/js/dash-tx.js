@@ -10,3 +10,8 @@ hamburger.addEventListener("click", function(){
 });
 
 
+const logOutbutton = document.getElementById("logout-btn");
+const formForLogout = document.getElementById("logout-form");
+logOutbutton.addEventListener("click", function(){
+    formForLogout.submit();
+});

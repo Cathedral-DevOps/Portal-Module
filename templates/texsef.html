@@ -9,23 +9,24 @@
     </head>
     <body>
         <div class="wrapper">
-            <form action="">
+            <form action="/texdash" method="POST" id="form">
                 <h1>Login</h1>
                 <div class="input-box">
-                    <input type="text" placeholder="Email/Username" required>
+                    <input type="text" placeholder="Email/Username" name="username" required id="username">
                 </div>
                 <div class="input-box">
-                    <input type="password" placeholder="Password/TexID" required>
+                    <input type="password" placeholder="Password/TexID" name="password" required id="password">
                 </div>
                 <div class="remember-forgot">
-                    <label><input type="checkbox"> Remember Me</label>
                     <a href="#">Forgot password?</a>
                 </div>
-                <button type="submit" class="btn" >Login</button>
+                <button type="submit" class="btn" id="btn" >Login</button>
                 <div class="register-link">
-                    <p>Don't have an account? <a href="{{ url_for('texdash') }}">Register</a></p>
+                    <p>Don't have an account? <a href="https://cd-us.site">Register</a></p>
                 </div>
             </form>
         </div>
+        <script src="{{ url_for('static', filename='js/texsef.js') }}"></script>
     </body>
+
 </html>

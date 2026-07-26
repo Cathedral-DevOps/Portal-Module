@@ -1,6 +1,9 @@
 import os  # noqa: F401
-from flask import Flask, render_template, request  # noqa: F401
+from flask import Flask, render_template, request 
+from dotenv import load_dotenv # noqa: F401
 
+
+load_dotenv()
 app = Flask(__name__)
 #Routing
 @app.route("/")
@@ -11,13 +14,31 @@ def home():
 def cdevportal():
     return render_template("cathedral.html")
 
-@app.route("/texsef")
+@app.route("/texsef", methods=['GET'])
 def texsefportal():
     return render_template("texsef.html")
+    
 
-@app.route("/texdash")
+@app.route("/texdash", methods=['POST'])
 def texdash():
-    return render_template("dash-tx.html")
+    # Grab the values sent from the HTML form
+    user_input = request.form.get("username")
+    pass_input = request.form.get("password")
+
+    # Fetch secrets safely on the server side
+    dev_user = os.getenv("dev_user")
+    dev_pass = os.getenv("dev_pass")
+    wesley_user = os.getenv("wesley_user")
+    wesley_pass = os.getenv("wesley_pass")
+
+    # Validate server-side
+    is_dev = (user_input == dev_user and pass_input == dev_pass)
+    is_wesley = (user_input == wesley_user and pass_input == wesley_pass)
+
+    if is_dev or is_wesley:
+        return render_template("dash-tx.html")
+    else:
+        return "Invalid Credentials", 401
 
 
 
