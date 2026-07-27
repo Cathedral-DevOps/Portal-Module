@@ -86,7 +86,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link" id="newsPost">
+                            <a href="#" class="sidebar-link" id="newsPost" data-bs-toggle="modal" data-bs-target="#eventModal">
                                 News Post
                             </a>
                         </li>
@@ -338,6 +338,38 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     <button type="button" id="submit-popup-btn" class="btn btn-success" data-bs-dismiss="modal">Submit</button>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="entryModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <!---Header-->
+                <div class="modal-header">
+                    <h5 class="modal-title" id="eventModalLabel">Enter Post Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <!---Input form-->
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="pop-eventName" class="form-label">Youtube Stream Name</label>
+                        <input type="text" class="form-control" placeholder="ex: Breaking News!" id="pop-eventName">
+                    </div>
+                    <div class="mb-3">
+                        <label for="pop-content" class="form-label">Youtube Link</label>
+                        <input type="text" class="form-control" placeholder="Today at TexSEF..." id="pop-content">
+                    </div>
+
+                </div>
+                
+                <!--footer-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" id="submit-popup-btn2" class="btn btn-success" data-bs-dismiss="modal">Submit</button>
 
                 </div>
 

@@ -46,25 +46,53 @@ const outputElement = document.getElementById('aEr');
   const submitPopupBtn = document.getElementById('submit-popup-btn');
   const popNameInput = document.getElementById('pop-vodName');
   const popLinkInput = document.getElementById('pop-link');
+  
+  const submitPopupBtn2 = document.getElementById('submit-popup-btn2');
+  const popEventInput = document.getElementById('pop-eventName');
+  const popContentInput = document.getElementById('pop-content');
+
+
   const bootstrapModal = new bootstrap.Modal(document.getElementById('entryModal'));
-  submitPopupBtn.addEventListener('click', ()=>{
-    const enteredName = popNameInput.value;
-    const enteredlink = popLinkInput.value;
-    
-    db.collection("vod").add({
-      title: enteredName,
-      link: enteredlink,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp()
-    })
-    .then(() => {
-        console.log("Written!");
-        popNameInput.value = '';
-        popLinkInput.value = '';
-        bootstrapModal.hide();
-    })
-    .catch((error)=>{
-      console.error("Error:", error);
-    })
-  })
+  const bootstrapEventModal = new bootstrap.Modal(document.getElementById('entryModal'));
+
+  
+      submitPopupBtn.addEventListener('click', ()=>{
+        const enteredName = popNameInput.value;
+        const enteredlink = popLinkInput.value;
+        
+        db.collection("vod").add({
+          title: enteredName,
+          link: enteredlink,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        })
+        .then(() => {
+            console.log("Written!");
+            popNameInput.value = '';
+            popLinkInput.value = '';
+            bootstrapModal.hide();
+        })
+        .catch((error)=>{
+          console.error("Error:", error);
+        })
+      })
+      submitPopupBtn2.addEventListener('click', ()=>{
+        const enteredName = popEventInput.value;
+        const enteredlink = popContentInput.value;
+        
+        db.collection("events").add({
+          title: enteredName,
+          link: enteredlink,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        })
+        .then(() => {
+            console.log("Written!");
+            popNameInput.value = '';
+            popLinkInput.value = '';
+            bootstrapEventModal.hide();
+        })
+        .catch((error)=>{
+          console.error("Error:", error);
+        })
+      })
 
 });
