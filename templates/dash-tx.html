@@ -76,7 +76,7 @@
                     </a>
                     <ul id="import-dropdown" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link" id="EventPost">
+                            <a href="#" class="sidebar-link" id="EventPost"  data-bs-toggle="modal" data-bs-target="#eventModal">
                                 Event Post
                             </a>
                         </li>
@@ -86,7 +86,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="#" class="sidebar-link" id="newsPost" data-bs-toggle="modal" data-bs-target="#eventModal">
+                            <a href="#" class="sidebar-link" id="newsPost" data-bs-toggle="modal" data-bs-target="#newsModal">
                                 News Post
                             </a>
                         </li>
@@ -345,7 +345,7 @@
         </div>
 
     </div>
-    <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="entryModalLabel" aria-hidden="true">
+    <div class="modal fade" id="newsModal" tabindex="-1" aria-labelledby="entryModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <!---Header-->
@@ -370,6 +370,42 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     <button type="button" id="submit-popup-btn2" class="btn btn-success" data-bs-dismiss="modal">Submit</button>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+     <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="entryModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <!---Header-->
+                <div class="modal-header">
+                    <h5 class="modal-title" id="eventModalLabel">Enter Event Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <!---Input form-->
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="pop-eventName" class="form-label">Event Name</label>
+                        <input type="text" class="form-control" placeholder="ex: TexSEF State Championships" id="pop-event2Name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="pop-content" class="form-label">Description</label>
+                        <input type="text" class="form-control" placeholder="Ex: State 2026 @ Baylor U!" id="pop-description">
+                    </div>
+                     <div class="mb-3">
+                        <label for="pop-content" class="form-label">Date Time (Exclusive to Ex, 12hr clk)</label>
+                        <input type="text" class="form-control" placeholder="Ex: 2026-06-30 07:00AM" id="pop-dti">
+                    </div>
+                </div>
+                
+                <!--footer-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" id="submit-popup-btn3" class="btn btn-success" data-bs-dismiss="modal">Submit</button>
 
                 </div>
 

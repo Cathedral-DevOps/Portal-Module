@@ -1,10 +1,13 @@
 import os  # noqa: F401
 from flask import Flask, render_template, request 
 from dotenv import load_dotenv # noqa: F401
-
+from flask_hot_reload import HotReload
 
 load_dotenv()
 app = Flask(__name__)
+hot_reload = HotReload(app)
+
+
 #Routing
 @app.route("/")
 def home():
