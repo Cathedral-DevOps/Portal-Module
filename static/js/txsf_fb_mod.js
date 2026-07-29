@@ -12,11 +12,11 @@ document.addEventListener("DOMContentLoaded", ()=>{
   };
 
   // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
 
-const counterBtn = document.getElementById('cBtn');
-const outputElement = document.getElementById('aEr');
+  const counterBtn = document.getElementById('cBtn');
+  const outputElement = document.getElementById('aEr');
 
   counterBtn.addEventListener('click', async () => {
   outputElement.innerText = "Fetching data...";
@@ -130,6 +130,8 @@ const outputElement = document.getElementById('aEr');
         })
       });
 
+  // Import functions- for release: only need the import by selected event and import most recent
 
+      
 
 });
