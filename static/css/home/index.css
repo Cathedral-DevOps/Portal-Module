@@ -3,7 +3,7 @@
 @font-face {
   font-family: 'Garet';
   /* ../ steps out of the css folder, then enters fonts */
-  src: url('../fonts/Garet-Book.ttf') format('truetype'); 
+  src: url('../../fonts/Garet-Book.ttf') format('truetype'); 
   font-weight: normal;
   font-style: normal;
   font-display: swap;

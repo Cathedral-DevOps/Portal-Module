@@ -15,11 +15,11 @@ def home():
 
 @app.route("/cdev")
 def cdevportal():
-    return render_template("cathedral.html")
+    return render_template("cathedralCo/cathedral.html")
 
 @app.route("/texsef", methods=['GET'])
 def texsefportal():
-    return render_template("texsef.html")
+    return render_template("texsef/texsef.html")
     
 
 @app.route("/texdash", methods=['POST'])
@@ -39,13 +39,13 @@ def texdash():
     is_wesley = (user_input == wesley_user and pass_input == wesley_pass)
 
     if is_dev or is_wesley:
-        return render_template("dash-tx.html")
+        return render_template("texsef/dash-tx.html")
     else:
         return "Invalid Credentials", 401
 
 @app.route("/texdash/active", methods=['GET'])
 def txsf_active():
-    return render_template("dash_tx_active.html")
+    return render_template("texsef/dash_tx_active.html")
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
