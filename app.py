@@ -20,7 +20,18 @@ def cdevportal():
 @app.route("/texsef", methods=['GET'])
 def texsefportal():
     return render_template("texsef/texsef.html")
-    
+
+@app.route("/texdash/account", methods=['GET'])
+def txsf_account():
+    return render_template("texsef/dash_tx_account.html")
+
+@app.route("/texdash/events", methods=['GET'])
+def txsf_events():
+    return render_template("texsef/dash_tx_events.html")
+
+@app.route("/texdash/settings", methods=['GET'])
+def txsf_settings():
+    return render_template("texsef/dash_tx_settings.html")
 
 @app.route("/texdash", methods=['POST'])
 def texdash():
