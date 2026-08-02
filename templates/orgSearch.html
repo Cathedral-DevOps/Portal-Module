@@ -1,16 +1,56 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Search for your Infrastructure @ cdev</title>
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/home/orgSearch.css') }}"
-    />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>TexSEF Infrastructure Portal @ cdev</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home/orgSearch.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">  
   </head>
-  <body>
+  <body class="body">
 
+    <header class="header">
+        <div class="header_content">
+          <a href="{{ url_for('home') }}" class="logo">
+            <img class="logo_img" src="{{ url_for('static', filename='images/nav_logo.svg') }}" alt="Company Logo" style="margin-bottom: 10px;" />
+          </a>
+          <nav class="nav">
+            <ul class="nav_list">
+              <li class="nav_item">
+                <a href="{{ url_for('home') }}" target="_blank" class="nav_link">home</a>
+              </li>
+              <li class="nav_item">
+                <a href="{{ url_for('cdevportal') }}" target="_blank" class="nav_link">developers</a>
+              </li>
+               <li class="nav_item">
+                <a href="{{ url_for('texsefportal') }}" target="_blank" class="nav_link">TexSEF</a>
+              </li>
+              <li class="nav_item">
+                <a href="{{ url_for('orgsearch') }}" target="_blank" class="nav_link">find your organization</a>
+              </li>
+            </ul>
+          </nav>
+          
+        </div>
+      </header>
+
+
+    <div class="container mt-5" style="max-width: 400px;">
+      <div class="position-relative">
+        <input type="text" class="form-control rounded-pill shadow-sm" 
+        placeholder="Search organizations..."
+        id="search-input"
+        autocomplete="off"
+        >
+        <ul id="results-dropdown" class="list-group position-absolute w-100 mt-1 shadow d-none" style="max-height: 200px; overflow-y: auto; z-index: 1050;">
+          <!-- Search results will be dynamically inserted here -->
+
+        </ul>
+      </div>
+    </div>
+    <script src="{{url_for('static', filename='js/home/orgSearch.js')}}"></script>
   </body>
 </html>

@@ -17,6 +17,10 @@ def home():
 def cdevportal():
     return render_template("cathedralCo/cathedral.html")
 
+@app.route("/orgsearch")
+def orgsearch():
+    return render_template("orgSearch.html")
+
 @app.route("/texsef", methods=['GET'])
 def texsefportal():
     return render_template("texsef/texsef.html")
@@ -60,4 +64,4 @@ def txsf_active():
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port, debug=True)
+    app.run(host="0.0.0.0", port=port)
