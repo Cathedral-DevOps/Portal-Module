@@ -1,10 +1,10 @@
 const mockData = ["Organization A", "Organization B", "Organization C", "Organization D", "Organization E", "Organization F", "Organization G", "Organization H", "Organization I", "Organization J"];
 
 const searchInput = document.getElementById("search-input");
-const suggestionsList = document.getElementById("results-dropdown");
+const dropdown = document.getElementById("results-dropdown");
 
 
-searchInput.addEventListener("input", function () {
+searchInput.addEventListener("input", (e) => {
 
     const value = e.target.value.toLowerCase();
     dropdown.innerHTML = "";
@@ -23,7 +23,7 @@ searchInput.addEventListener("input", function () {
             li.className = 'list-group-item list-group-item-action c-pointer';
             li.style.cursor='pointer';
             li.textContent = item;
-            li.addEventListener("click", function () {
+            li.addEventListener("click", () => {
                 searchInput.value = item;
                 dropdown.classList.add('d-none');
             });
@@ -35,10 +35,10 @@ searchInput.addEventListener("input", function () {
 
 });
 
-document.addEventListener("click", function (e) {
-    if (e.target.closest('.position-relative')) {
-        dropdown.classList.add('d-none');
-    }
-});
+// document.addEventListener("click",  (e)=> {
+//     if (e.target.closest('.position-relative')) {
+//         dropdown.classList.add('d-none');
+//     }
+// });
 
 
