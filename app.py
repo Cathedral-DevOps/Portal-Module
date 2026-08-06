@@ -1,5 +1,6 @@
+import json
 import os
-from flask import Flask, json, render_template, request, jsonify, session, redirect, url_for
+from flask import Flask, render_template, request, jsonify, session, redirect, url_for
 import firebase_admin
 from firebase_admin import credentials, auth
 
@@ -10,12 +11,24 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY")  # Change this to a secure random key in production
 
-load_dotenv()
+firebase_client_config = {
+    "apiKey": os.getenv("FIREBASE_API_KEY"),
+    "authDomain": os.getenv("FIREBASE_AUTH_DOMAIN"),
+    "projectId": os.getenv("FIREBASE_PROJECT_ID"),
+    "storageBucket": os.getenv("FIREBASE_STORAGE_BUCKET"),
+    "messagingSenderId": os.getenv("FIREBASE_MESSAGING_SENDER_ID"),
+    "appId": os.getenv("FIREBASE_APP_ID")
+}
 
 cred_json = os.getenv("FIREBASE_ADMIN_CREDENTIALS")
 default_app = firebase_admin.initialize_app(
     credentials.Certificate(json.loads(cred_json))
 )
+
+
+@app.context_processor
+def inject_firebase_config():
+    return {"firebase_config": firebase_client_config}
 
 # Helper function to check if the user is authenticated
 
@@ -108,13 +121,9 @@ def txsf_active():
 # DASH ROUTE 
 
 @app.route("/texdash", methods=['GET'])
-
 def texdash():
-    # TEMPORARY TEST: Print the session variables directly to your terminal
-    print("DEBUG SESSION CONTENT:", dict(session))
-
     if not session.get("user"):
-        print("DEBUG: No user cookie found! Redirecting back to login...")
+        
         return redirect(url_for("texsefportal"))
         
     return render_template("texsef/dash-tx.html", user=session["user"])

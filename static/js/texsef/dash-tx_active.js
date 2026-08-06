@@ -80,17 +80,13 @@ function toggleCheckIn(button) {
 
 document.addEventListener("DOMContentLoaded", ()=>{  
 
-    const firebaseConfig = {
-    apiKey: "AIzaSyBFiUuROwzKQo2aojDa5RD89ZRLzCQZnmE",
-    authDomain: "txsf-flutter.firebaseapp.com",
-    projectId: "txsf-flutter",
-    storageBucket: "txsf-flutter.firebasestorage.app",
-    messagingSenderId: "665008585152",
-    appId: "1:665008585152:web:113d1d1210ea4711863025"
-  };
+    const firebaseConfig = window.APP_CONFIG?.firebaseConfig;
+    if (!firebaseConfig || !firebaseConfig.apiKey) {
+        throw new Error("Firebase config is missing from the server-rendered page.");
+    }
 
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
 
   const counterBtn = document.getElementById('cBtn');
