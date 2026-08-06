@@ -11,7 +11,24 @@ hamburger.addEventListener("click", function(){
 
 
 const logOutbutton = document.getElementById("logout-btn");
-const formForLogout = document.getElementById("logout-form");
-logOutbutton.addEventListener("click", function(){
-    formForLogout.submit();
-});
+if (logOutbutton) {
+    logOutbutton.addEventListener("click", async function(event){
+        event.preventDefault();
+
+        if (window.firebase && firebase.auth) {
+            try {
+                await firebase.auth().signOut();
+            } catch (error) {
+                console.error("Firebase client sign-out failed:", error);
+            }
+        }
+
+        try {
+            await fetch("/api/logout/txdash", { method: "GET", credentials: "same-origin" });
+        } catch (error) {
+            console.error("Backend logout request failed:", error);
+        }
+
+        window.location.href = "/texsef";
+    });
+}

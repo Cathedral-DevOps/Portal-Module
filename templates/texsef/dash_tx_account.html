@@ -177,12 +177,12 @@
                                         </h6>
                                         
                                           <p class="fw-bold mb-2" id="">
-                                            Wesley
+                                            {{ session.user.email }}
                                          </p>
                                         
                                         <div class="mb-0">
                                             <span class="bagde text-success me-2">
-                                                Administator
+                                                Check Your Role
                                             </span>
                                             <span class="fw-bold">
                                                 <= Your Role
@@ -192,28 +192,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-12 col-md-4">
-                                <div class="card shadow">
-                                    <div class="card-body py-4" id="">
-                                        <h6 class="mb-2 fw-bold">
-                                            Coworkers Logged in
-                                        </h6>
-                                        
-                                          <p class="fw-bold mb-2" id="">
-                                            4
-                                         </p>
-                                        
-                                        <div class="mb-0">
-                                            <span class="bagde text-success me-2">
-                                                Manage Check-Ins
-                                            </span>
-                                            <span class="fw-bold">
-                                                <= Your Task
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            
 
                             <div class="col-12 col-md-4">
                                 <div class="card shadow">
@@ -223,7 +202,7 @@
                                         </h6>
                                         
                                           <p class="fw-bold mb-2" id="">
-                                            Wesley@texsef.org
+                                            {{ session.user.email}}
                                          </p>
                                         
                                         <div class="mb-0">
@@ -448,6 +427,7 @@
 
     <!---Scripts--->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
     <script src ="{{url_for('static', filename='js/texsef/txsf_fb_mod.js')}}"></script>
     <script src="{{url_for('static', filename='js/texsef/dash-tx_active.js')}}"></script>
