@@ -1,42 +1,44 @@
   // Your web app's Firebase configuration
   
   
-document.addEventListener("DOMContentLoaded", ()=>{  
-  const firebaseConfig = window.APP_CONFIG?.firebaseConfig;
-  if (!firebaseConfig || !firebaseConfig.apiKey) {
-    throw new Error("Firebase config is missing from the server-rendered page.");
-  }
+document.addEventListener("DOMContentLoaded", ()=>{
+  const loadFirebaseConfig = async () => {
+    const response = await fetch('/api/firebase-config', { credentials: 'same-origin' });
+    if (!response.ok) {
+      throw new Error(`Failed to load Firebase config: ${response.status}`);
+    }
+    const data = await response.json();
+    if (!data.firebaseConfig || !data.firebaseConfig.apiKey) {
+      throw new Error('Firebase config is missing from /api/firebase-config.');
+    }
+    return data.firebaseConfig;
+  };
 
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
+  loadFirebaseConfig().then(firebaseConfig => {
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
 
-  const counterBtn = document.getElementById('cBtn');
-  const outputElement = document.getElementById('aEr');
+    const counterBtn = document.getElementById('cBtn');
+    const outputElement = document.getElementById('aEr');
 
-  counterBtn.addEventListener('click', async () => {
-  outputElement.innerText = "Fetching data...";
+    counterBtn.addEventListener('click', async () => {
+      outputElement.innerText = "Fetching data...";
 
-  try {
+      try {
+        db.collection("events").onSnapshot((querySnapshot)=>{
+          let runningTotal = 0;
 
-    db.collection("events").onSnapshot((querySnapshot)=>{
-      let runningTotal = 0;
-    
-      querySnapshot.forEach((doc)=>{
-      const data = doc.data();
-        runningTotal += data.registered;
-        outputElement.textContent = runningTotal;
-      })
-      
-      
-    })
-      
-
-  } catch (error) {
-      console.error("Firestore read failed:", error);
-      outputElement.innerText = `Failed to get data. 206`;
-  }
-  });
+          querySnapshot.forEach((doc)=>{
+            const data = doc.data();
+            runningTotal += data.registered;
+            outputElement.textContent = runningTotal;
+          });
+        });
+      } catch (error) {
+        console.error("Firestore read failed:", error);
+        outputElement.innerText = `Failed to get data. 206`;
+      }
+    });
 
 
 
@@ -105,7 +107,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
         const enteredDescription = popDescriptionInput.value;
         const registered = 0;
 
-        
         db.collection("events").add({
           title: enteredName,
           description: enteredDescription,
@@ -118,6 +119,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
             popEventInput.value = '';
             popDateTimeInput.value = '';
             popDescriptionInput.value = '';
+
 
             bootstrapEventModal.hide();
         })

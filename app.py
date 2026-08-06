@@ -30,6 +30,12 @@ default_app = firebase_admin.initialize_app(
 def inject_firebase_config():
     return {"firebase_config": firebase_client_config}
 
+@app.route("/api/firebase-config", methods=["GET"])
+def firebase_config():
+    if not firebase_client_config.get("apiKey"):
+        return jsonify({"error": "Firebase config is not configured."}), 500
+    return jsonify({"firebaseConfig": firebase_client_config})
+
 # Helper function to check if the user is authenticated
 
 def get_authenticated_user():

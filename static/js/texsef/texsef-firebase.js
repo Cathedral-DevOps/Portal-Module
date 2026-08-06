@@ -1,13 +1,20 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
-const firebaseConfig = window.APP_CONFIG?.firebaseConfig;
-if (!firebaseConfig || !firebaseConfig.apiKey) {
-    throw new Error("Firebase config is missing from the server-rendered page.");
-}
+const loadFirebaseConfig = async () => {
+    const response = await fetch('/api/firebase-config', { credentials: 'same-origin' });
+    if (!response.ok) {
+        throw new Error(`Failed to load Firebase config: ${response.status}`);
+    }
+    const data = await response.json();
+    if (!data.firebaseConfig || !data.firebaseConfig.apiKey) {
+        throw new Error('Firebase config is missing from /api/firebase-config.');
+    }
+    return data.firebaseConfig;
+};
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+const appPromise = loadFirebaseConfig().then(firebaseConfig => initializeApp(firebaseConfig));
+const authPromise = appPromise.then(app => getAuth(app));
 
 const loginForm = document.getElementById('form');
 const errorMsg = document.getElementById('error-message');
@@ -20,6 +27,7 @@ loginForm.addEventListener('submit', async (e) => {
     const password = document.getElementById('password').value;
 
     try {
+        const auth = await authPromise;
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const idToken = await userCredential.user.getIdToken();
         const response = await fetch('/api/login/txdash', {

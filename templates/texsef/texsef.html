@@ -28,18 +28,6 @@
             </form>
         </div>
 
-        <script>
-            window.APP_CONFIG = {
-                firebaseConfig: {
-                    apiKey: "{{ firebase_config.apiKey }}",
-                    authDomain: "{{ firebase_config.authDomain }}",
-                    projectId: "{{ firebase_config.projectId }}",
-                    storageBucket: "{{ firebase_config.storageBucket }}",
-                    messagingSenderId: "{{ firebase_config.messagingSenderId }}",
-                    appId: "{{ firebase_config.appId }}"
-                }
-            };
-        </script>
         <script src="{{ url_for('static', filename='js/texsef/texsef.js') }}"></script>
         <script type="module" src="{{ url_for('static', filename='js/texsef/texsef-firebase.js') }}"></script>
     </body>

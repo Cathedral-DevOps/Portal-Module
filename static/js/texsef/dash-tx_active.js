@@ -78,16 +78,22 @@ function toggleCheckIn(button) {
 // School
 // ""
 
-document.addEventListener("DOMContentLoaded", ()=>{  
-
-    const firebaseConfig = window.APP_CONFIG?.firebaseConfig;
-    if (!firebaseConfig || !firebaseConfig.apiKey) {
-        throw new Error("Firebase config is missing from the server-rendered page.");
+document.addEventListener("DOMContentLoaded", ()=>{
+  const loadFirebaseConfig = async () => {
+    const response = await fetch('/api/firebase-config', { credentials: 'same-origin' });
+    if (!response.ok) {
+      throw new Error(`Failed to load Firebase config: ${response.status}`);
     }
+    const data = await response.json();
+    if (!data.firebaseConfig || !data.firebaseConfig.apiKey) {
+      throw new Error('Firebase config is missing from /api/firebase-config.');
+    }
+    return data.firebaseConfig;
+  };
 
-    // Initialize Firebase
+  loadFirebaseConfig().then(firebaseConfig => {
     firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
+    const db = firebase.firestore();
 
   const counterBtn = document.getElementById('cBtn');
   const outputElement = document.getElementById('aEr');
