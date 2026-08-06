@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request, jsonify, session, redirect, url_for
+from flask import Flask, json, render_template, request, jsonify, session, redirect, url_for
 import firebase_admin
 from firebase_admin import credentials, auth
 
@@ -8,9 +8,14 @@ from dotenv import load_dotenv # noqa: F401
 
 load_dotenv()
 app = Flask(__name__)
-app.secret_key = "very_secret_key"  # Change this to a secure random key in production
-default_app = firebase_admin.initialize_app(credentials.Certificate("txsf-flutter-firebase-adminsdk-fbsvc-db860b3730.json"))
+app.secret_key = os.getenv("SECRET_KEY")  # Change this to a secure random key in production
 
+load_dotenv()
+
+cred_json = os.getenv("FIREBASE_ADMIN_CREDENTIALS")
+default_app = firebase_admin.initialize_app(
+    credentials.Certificate(json.loads(cred_json))
+)
 
 # Helper function to check if the user is authenticated
 
