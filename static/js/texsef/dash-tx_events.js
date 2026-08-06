@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", ()=>{
+document.addEventListener("DOMContentLoaded", () => {
   const loadFirebaseConfig = async () => {
     const response = await fetch('/api/firebase-config', { credentials: 'same-origin' });
     if (!response.ok) {
@@ -15,57 +15,49 @@ document.addEventListener("DOMContentLoaded", ()=>{
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
+    // 2. Initialize Firebase and Firestore
 
-// 2. Initialize Firebase and Firestore
+    // 3. Function to fetch data and build the table
+    async function loadTableData() {
+      const tableBody = document.getElementById("table-body");
+      tableBody.innerHTML = ""; // Clear existing rows
 
+      try {
+        db.collection("events").onSnapshot((querySnapshot) => {
+          let runningTotal = 0;
 
-// 3. Function to fetch data and build the table
-async function loadTableData() {
-  const tableBody = document.getElementById("table-body");
-  tableBody.innerHTML = ""; // Clear existing rows
+          querySnapshot.forEach((doc) => {
+            const data = doc.data();
 
-  try {
-    // Get all documents from the "users" collection
-    
-    db.collection("events").onSnapshot((querySnapshot)=>{
-      let runningTotal = 0;
-    
-       querySnapshot.forEach((doc) => {
-      const data = doc.data();
-      
-      // Pull out specific fields you want
-      const name = data.title || "N/A";
-      const datetime = data.DateTime || "N/A";
-      const desc = data.description || "N/A";
-      const registered = data.registered || "N/A";
+            // Pull out specific fields you want
+            const name = data.title || "N/A";
+            const datetime = data.DateTime || "N/A";
+            const desc = data.description || "N/A";
+            const registered = data.registered || "N/A";
 
-      // Create a new table row element
-      const row = document.createElement("tr");
+            // Create a new table row element
+            const row = document.createElement("tr");
 
-      // Insert the fields into the row
-      row.innerHTML = `
-        <td>${name}</td>
-        <td>${datetime}</td>
-        <td>${registered}</td>
-        <td>${desc}</td>
-      `;
+            // Insert the fields into the row
+            row.innerHTML = `
+              <td>${name}</td>
+              <td>${datetime}</td>
+              <td>${registered}</td>
+              <td>${desc}</td>
+            `;
 
-      // Append the row to the table body
-      tableBody.appendChild(row);
-    })
-      
-      
-    })
-    
-   
-  } catch (error) {
-    console.error("Error getting documents: ", error);
-  }
-}
+            // Append the row to the table body
+            tableBody.appendChild(row);
+          });
+        });
+      } catch (error) {
+        console.error("Error getting documents: ", error);
+      }
+    }
 
-// Run the function when the page loads
-loadTableData();
-
-
-
+    // Run the function when the page loads
+    loadTableData();
+  }).catch(error => {
+    console.error('Firebase config load failed:', error);
+  });
 });
